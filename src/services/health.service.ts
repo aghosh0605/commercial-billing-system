@@ -1,5 +1,6 @@
 import os from "os";
 import { ServiceAPIResponse } from "../../types/service-response";
+import { connectDB } from "../common/postgre-connect";
 
 const timeElapsed = Date.now();
 const today = new Date(timeElapsed);
@@ -17,7 +18,7 @@ const formatTime = (seconds: number) => {
 
 const getSimple = async (): Promise<ServiceAPIResponse<Object>> => {
   /* fetch data here */
-
+  await connectDB();
   return {
     statusCode: 200,
     body: { success: true, message: "🛠️ API v1 working!" },
