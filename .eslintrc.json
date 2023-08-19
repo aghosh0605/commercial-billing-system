@@ -10,23 +10,16 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "rules": {
-    "semi": [
-      "error",
-      "never"
-    ],
+    "semi": [2, "always"],
     "quotes": [
       "error",
-      "single",
+      "double",
       {
         "avoidEscape": true
       }
     ]
   },
-  "ignorePatterns": [
-    "dist"
-  ]
+  "ignorePatterns": ["dist"]
 }

@@ -1,41 +1,43 @@
-import express, { Express, Request, Response } from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
-import 'dotenv/config'
+import express, { Express, Request, Response } from "express";
+import cors from "cors";
+import helmet from "helmet";
+import "dotenv/config";
 
-import * as middleware from './middleware'
+import * as middleware from "./middleware";
 
-import articlesRouter from './routers/articles.router'
+import healthRouter from "./routers/health.router";
 
-const PORT = process.env.PORT || 8080
-const ENV = process.env.NODE_ENV || 'production'
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.NODE_ENV || "production";
 
-const app: Express = express()
+const app: Express = express();
 
-app.use(helmet())
+app.use(helmet());
 
-app.use(cors())
+app.use(cors());
 
-app.use(express.json())
+app.use(express.json());
 
-app.use(middleware.httpLogger)
+app.use(middleware.httpLogger);
 
-app.get('/', (req: Request, res: Response) => {
-  res.status(200).send('Welcome')
-})
+app.get("/api/v1", (req: Request, res: Response) => {
+  res.status(200).send("📖 Welcome to Plotline Billing System Backend!");
+});
 
-// Articles routes
+// Main routers
 
-app.use('/articles', articlesRouter)
+app.use("/api/v1/health", healthRouter);
 
 // Error hanlding middleware
 
-app.use(middleware.errorHandler)
+app.use(middleware.errorHandler);
 
-app.use(middleware.notFoundHandler)
+app.use(middleware.notFoundHandler);
 
 const server = app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT} in ${ENV} environment`)
-})
+  console.log(`#############################################################
+🛡️ Server running on port ${PORT} in ${ENV} environment 🛡️
+#############################################################`);
+});
 
-export { app as default, server }
+export { app as default, server };
