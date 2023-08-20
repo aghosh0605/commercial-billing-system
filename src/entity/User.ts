@@ -6,6 +6,7 @@ import {
   Relation,
 } from "typeorm";
 import { CartItem } from "./CartItem";
+import { Order } from "./Order";
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -26,4 +27,7 @@ export class User {
 
   @OneToMany(() => CartItem, (cartItem) => cartItem.user)
   cartItems: Relation<CartItem[]>;
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Relation<Order[]>;
 }

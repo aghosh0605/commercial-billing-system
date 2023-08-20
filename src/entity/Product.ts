@@ -6,6 +6,7 @@ import {
   OneToMany,
 } from "typeorm";
 import { CartItem } from "./CartItem";
+import { OrderItem } from "./OrderItem";
 
 @Entity()
 export class Product {
@@ -22,4 +23,7 @@ export class Product {
 
   @OneToMany(() => CartItem, (cartItem) => cartItem.product)
   cartItems: Relation<CartItem[]>;
+
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
+  orderItems: Relation<OrderItem[]>;
 }

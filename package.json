@@ -1,7 +1,7 @@
 {
-  "name": "node-express-typescript-starter",
-  "version": "0.1.0",
-  "description": "A starter Node.js API server using Express, with Docker, Jest, and ESLint. All in Typescript",
+  "name": "plotline-billing-system",
+  "version": "0.2.0",
+  "description": "Online billing system is essential for businesses to manage their invoicing.",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
@@ -11,8 +11,8 @@
     "test": "npm run build && jest"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Aniruddha Ghosh",
+  "license": "UNLICENSED",
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
