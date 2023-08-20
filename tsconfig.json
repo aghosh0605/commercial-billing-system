@@ -11,5 +11,6 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src", "types"]
+  "include": ["src", "types"],
+  "files": ["types/types.d.ts"]
 }

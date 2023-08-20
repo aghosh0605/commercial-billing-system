@@ -48,7 +48,11 @@ const getDetailed = async (
   };
   return {
     statusCode: 200,
-    body: healthcheckData,
+    body: {
+      success: true,
+      message: "🛠️ API v1 working!",
+      data: healthcheckData,
+    },
   };
 };
 

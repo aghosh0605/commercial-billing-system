@@ -9,6 +9,7 @@ import * as middleware from "./middleware";
 
 import healthRouter from "./routers/health.router";
 import productRouter from "./routers/product.router";
+import authRouter from "./routers/auth.router";
 
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.NODE_ENV || "development";
@@ -31,6 +32,7 @@ app.get("/api/v1", (req: Request, res: Response) => {
 
 app.use("/api/v1/health", healthRouter);
 app.use("/api/v1/product", productRouter);
+app.use("/api/v1/auth", authRouter);
 
 // Error hanlding middleware
 

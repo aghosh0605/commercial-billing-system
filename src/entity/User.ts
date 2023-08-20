@@ -18,12 +18,23 @@ export class User {
   username: string;
 
   @Column({
+    length: 100,
+  })
+  name: string;
+
+  @Column({
     length: 50,
   })
   email: string;
 
   @Column()
-  passwordHash: string;
+  password: string;
+
+  @Column({ default: false })
+  isVerified: boolean;
+
+  @Column({ default: false })
+  isAdmin: boolean;
 
   @OneToMany(() => CartItem, (cartItem) => cartItem.user)
   cartItems: Relation<CartItem[]>;
