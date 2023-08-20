@@ -1,5 +1,9 @@
 import { DataSource } from "typeorm";
 import "dotenv/config";
+import { CartItem } from "./entity/CartItem";
+import { Product } from "./entity/Product";
+import { Service } from "./entity/Service";
+import { User } from "./entity/User";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -10,7 +14,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: true,
-  entities: [],
+  entities: [User, Service, Product, CartItem],
   subscribers: [],
   migrations: [],
 });

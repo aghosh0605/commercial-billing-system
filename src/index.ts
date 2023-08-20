@@ -8,6 +8,7 @@ import "reflect-metadata";
 import * as middleware from "./middleware";
 
 import healthRouter from "./routers/health.router";
+import productRouter from "./routers/product.router";
 
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.NODE_ENV || "development";
@@ -29,6 +30,7 @@ app.get("/api/v1", (req: Request, res: Response) => {
 // Main routers
 
 app.use("/api/v1/health", healthRouter);
+app.use("/api/v1/product", productRouter);
 
 // Error hanlding middleware
 
