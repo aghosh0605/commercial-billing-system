@@ -10,9 +10,9 @@ const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  const status = err.statusCode || err.status || 500;
-
-  res.status(status).send(err);
+  const status = err.statusCode || 500;
+  //console.log(err);
+  res.status(status).send(err.body);
 };
 
 export { errorHandler };

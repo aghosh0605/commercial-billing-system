@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import { Request, Response, NextFunction } from "express";
+import { ServiceAPIResponse } from "../../types/service-response";
 
 type RequestLocations = "query" | "body" | "params" | "headers" | "files";
 
@@ -32,7 +33,10 @@ const yupValidator =
         message.push(error);
         errorCount++;
       });
-      next({ statusCode: 404, message: message });
+      next({
+        statusCode: 404,
+        body: { success: false, message: message },
+      } as ServiceAPIResponse<undefined>);
     }
   };
 

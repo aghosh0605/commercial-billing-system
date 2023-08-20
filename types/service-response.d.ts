@@ -6,8 +6,8 @@ interface ServiceAPIResponse<T> {
 
 interface ResponseBody<TD> {
   success: boolean;
-  message: string;
+  message: string | string[];
   data?: TD;
 }
 
-export { ServiceAPIResponse };
+export { ServiceAPIResponse, ResponseBody };
