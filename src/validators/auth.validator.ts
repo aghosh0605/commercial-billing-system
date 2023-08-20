@@ -6,7 +6,7 @@ export const yupSignupSchema = yup.object().shape({
   password: yup
     .string()
     .trim()
-    .required()
+    .required("Please provide a password")
     .matches(
       // eslint-disable-next-line no-useless-escape
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/gm,
@@ -22,3 +22,18 @@ export const yupSignupSchema = yup.object().shape({
 });
 
 export type SignupSchema = yup.InferType<typeof yupSignupSchema>;
+
+export const yupSignInSchema = yup.object({
+  username: yup.string().required("Please provide the username").trim(),
+  password: yup
+    .string()
+    .required("Please provide the password")
+    .trim()
+    .matches(
+      // eslint-disable-next-line no-useless-escape
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/gm,
+      "Username or Password not valid"
+    ),
+});
+
+export type SignInSchema = yup.InferType<typeof yupSignInSchema>;

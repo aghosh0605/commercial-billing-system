@@ -28,7 +28,7 @@ const yupValidator =
       let message: Array<string> = [];
       let errorCount = 1;
       error.errors.forEach((e: string) => {
-        let error = `${errorCount}.${e} `;
+        let error = `${errorCount}. ${e} `;
         message.push(error);
         errorCount++;
       });

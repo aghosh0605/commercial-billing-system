@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 declare namespace jsonwebtoken {
   interface JwtPayload {
-    id?: string;
+    id?: number;
     isAdmin?: boolean;
   }
 }
