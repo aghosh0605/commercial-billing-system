@@ -1,6 +1,5 @@
 import request from "supertest";
-import { AppDataSource } from "../src/data-source";
-import app, { server } from "../src/index";
+import { app } from "../src/app";
 
 describe("Health Endpoints", () => {
   it("Health Simple should return 200", async () => {
@@ -11,9 +10,8 @@ describe("Health Endpoints", () => {
     const res = await request(app).get("/api/v1/health/debug");
     expect(res.statusCode).toEqual(200);
   });
-});
-
-afterAll(() => {
-  AppDataSource.destroy();
-  server.close();
+  it("Backend should return 200", async () => {
+    const res = await request(app).get("/api/v1");
+    expect(res.statusCode).toEqual(200);
+  });
 });
