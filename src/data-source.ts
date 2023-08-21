@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: true,
-  logging: ["query", "error"],
+  logging: process.env.NODE_ENV === "production" ? false : ["error"],
   entities: [User, Service, Product, CartItem, Order, OrderItem],
   subscribers: [],
   migrations: [],
@@ -35,5 +35,16 @@ export const connectDB = async () => {
     })
     .catch((error) =>
       console.log("❌ DB Connection failed with error: " + error)
+    );
+};
+
+export const closeDB = async () => {
+  await AppDataSource.destroy()
+    .then(async () => {
+      // here you can start to work with your database
+      console.log("💾 Databse Connection disconnected");
+    })
+    .catch((error) =>
+      console.log("❌ DB cpnnecion close failed with error: " + error)
     );
 };
