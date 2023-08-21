@@ -33,7 +33,6 @@ const signIn = async (
   let userExists: any = user;
   const jwtToken = sign(
     <JwtPayload>{
-      isAdmin: user.isAdmin,
       id: user.id,
     },
     process.env.JWT_SECRET!,

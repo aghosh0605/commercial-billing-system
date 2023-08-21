@@ -9,6 +9,7 @@ import * as middleware from "./middleware";
 import healthRouter from "./routers/health.router";
 import productRouter from "./routers/product.router";
 import authRouter from "./routers/auth.router";
+import cartRouter from "./routers/cart.router";
 
 const app: Express = express();
 
@@ -32,6 +33,7 @@ app.get("/api/v1", (req: Request, res: Response) => {
 app.use("/api/v1/health", healthRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/cart", cartRouter);
 
 // Error hanlding middleware
 
