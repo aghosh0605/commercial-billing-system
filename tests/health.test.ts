@@ -1,5 +1,5 @@
 import request from "supertest";
-
+import { AppDataSource } from "../src/data-source";
 import app, { server } from "../src/index";
 
 describe("Health Endpoints", () => {
@@ -14,5 +14,6 @@ describe("Health Endpoints", () => {
 });
 
 afterAll(() => {
+  AppDataSource.destroy();
   server.close();
 });
