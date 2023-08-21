@@ -3,7 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import "dotenv/config";
 import "reflect-metadata";
-
+import { ResponseBody } from "../types/service-response";
 import * as middleware from "./middleware";
 
 import healthRouter from "./routers/health.router";
@@ -21,7 +21,10 @@ app.use(express.json());
 app.use(middleware.httpLogger);
 
 app.get("/api/v1", (req: Request, res: Response) => {
-  res.status(200).send("📖 Welcome to Plotline Billing System Backend!");
+  res.status(200).send({
+    success: true,
+    message: "📖 Welcome to Plotline Billing System Backend!",
+  } as ResponseBody<undefined>);
 });
 
 // Main routers

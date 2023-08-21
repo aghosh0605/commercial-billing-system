@@ -8,6 +8,6 @@ declare namespace jsonwebtoken {
 
 declare namespace Express {
   interface Request {
-    user?: string;
+    user?: Object;
   }
 }

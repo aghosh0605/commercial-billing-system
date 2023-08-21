@@ -14,7 +14,7 @@ const getAll = async (
   }
   const limit: number = 5;
   const skip: number = (+page - 1) * limit;
-  console.log(typeof skip);
+  //console.log(typeof skip);
   const products = await AppDataSource.getRepository(Product).find({
     order: {
       id: "ASC",
@@ -28,4 +28,26 @@ const getAll = async (
   };
 };
 
-export { getAll };
+const getProductbyID = async (
+  id: number
+): Promise<ServiceAPIResponse<Array<Product>>> => {
+  /* fetch the specific product here */
+  const product = await AppDataSource.getRepository(Product).findBy({
+    id: id,
+  });
+  if (product.length === 0) {
+    return {
+      statusCode: 404,
+      body: {
+        success: false,
+        message: "🛒 No product found with the ID",
+      },
+    };
+  }
+  return {
+    statusCode: 200,
+    body: { success: true, message: "🛒 Fetched the product", data: product },
+  };
+};
+
+export { getAll, getProductbyID };

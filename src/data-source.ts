@@ -19,6 +19,9 @@ export const AppDataSource = new DataSource({
   entities: [User, Service, Product, CartItem, Order, OrderItem],
   subscribers: [],
   migrations: [],
+  cache: {
+    duration: 30000, // 30 seconds
+  },
 });
 
 // to initialize the initial connection with the database, register all entities
