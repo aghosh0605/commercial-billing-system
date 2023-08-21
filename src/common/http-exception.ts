@@ -2,7 +2,7 @@ class HttpException extends Error {
   statusCode?: number;
   body: {
     success: boolean;
-    message: string;
+    message: string | string[];
   };
 
   constructor(statusCode: number, message: string, success: boolean) {

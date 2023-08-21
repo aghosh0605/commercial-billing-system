@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: true,
-  logging: true,
+  logging: ["query", "error"],
   entities: [User, Service, Product, CartItem, Order, OrderItem],
   subscribers: [],
   migrations: [],
