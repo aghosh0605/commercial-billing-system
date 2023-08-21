@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: true,
-  logging: ["query", "error"],
+  logging: ["error"],
   entities: [User, Service, Product, CartItem, Order, OrderItem],
   subscribers: [],
   migrations: [],
@@ -26,7 +26,7 @@ export const AppDataSource = new DataSource({
 // once in your application bootstrap
 export const connectDB = async () => {
   await AppDataSource.initialize()
-    .then(() => {
+    .then(async () => {
       // here you can start to work with your database
       console.log("✅ Databse Connection established");
     })
