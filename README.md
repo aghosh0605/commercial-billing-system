@@ -1,4 +1,4 @@
-[![Build - Tests](https://github.com/aghosh0605/plotline-billing-system/blob/main/.github/workflows/build-test.yml/badge.svg)](https://github.com/aghosh0605/plotline-billing-system/blob/main/.github/workflows/build-test.yml)
+[![Build - Tests](https://github.com/aghosh0605/plotline-billing-system/actions/workflows/.github/workflows/build-test.yml/badge.svg)](.github/workflows/build-test.yml)
 
 # plotline-billing-system
 
