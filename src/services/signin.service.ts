@@ -15,7 +15,7 @@ const signIn = async (
   });
   if (!user) {
     return {
-      statusCode: 401,
+      statusCode: 404,
       body: { success: false, message: "🤦🏻 User doesn't Exists" },
     };
   }

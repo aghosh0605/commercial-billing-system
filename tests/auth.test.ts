@@ -1,21 +1,22 @@
 import request from "supertest";
 import { app } from "../src/app";
-import { connectDB, closeDB } from "../src/data-source";
+import { connectDB, closeDB, AppDataSource } from "../src/data-source";
+import { User } from "../src/entity/User";
 
-beforeEach(async () => {
+beforeAll(async () => {
   await connectDB();
 });
 
 const signupData = {
-  username: "test",
-  name: "Test User",
-  email: "test@gmail.com",
+  username: "jesttest",
+  name: "Jest Test User",
+  email: "jesttest@gmail.com",
   password: "900000000iI@",
 };
 
 const signinData = {
-  username: "test",
-  password: "900000000iI@",
+  username: signupData.username,
+  password: signupData.password,
 };
 
 describe("Health Endpoints", () => {
@@ -29,6 +30,10 @@ describe("Health Endpoints", () => {
   });
 });
 
-afterEach(async () => {
+//Use afterEach method to run after each test
+afterAll(async () => {
+  await AppDataSource.getRepository(User).delete({
+    username: signupData.username,
+  });
   await closeDB();
 });
