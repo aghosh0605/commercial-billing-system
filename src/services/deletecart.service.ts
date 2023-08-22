@@ -6,11 +6,11 @@ import { User } from "../entity/User";
 const deleteCartItems = async (
   user: User
 ): Promise<ServiceAPIResponse<undefined>> => {
-  /* Delete items of your cart here */
-  const result = await AppDataSource.getRepository(CartItem).delete({
+  /* Delete all items of your cart here */
+  await AppDataSource.getRepository(CartItem).delete({
     user: user,
   });
-  console.log(result);
+
   return {
     statusCode: 200,
     body: {

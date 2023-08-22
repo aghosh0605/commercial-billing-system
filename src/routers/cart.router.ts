@@ -6,7 +6,7 @@ import { yupJwtHeader } from "../validators/jwt.validator";
 
 const router = express.Router();
 
-/* GET Add item to cart */
+/* GET Show all items of cart */
 router.get(
   "/get/all",
   yupValidator("headers", yupJwtHeader),

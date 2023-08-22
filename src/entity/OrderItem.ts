@@ -1,7 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  Relation,
+} from "typeorm";
 import { Order } from "./Order";
 import { Product } from "./Product";
 import { Service } from "./Service";
+import { ColumnNumericTransformer } from "../common/numericTransformer";
 
 @Entity()
 export class OrderItem {
@@ -9,20 +16,28 @@ export class OrderItem {
   id: number;
 
   @ManyToOne(() => Order, (order) => order.orderItems, { nullable: false })
-  order: Order;
+  order: Relation<Order>;
 
   @ManyToOne(() => Product, (product) => product.orderItems)
-  product: Product;
+  product: Relation<Product>;
 
   @ManyToOne(() => Service, (service) => service.orderItems)
-  service: Service;
+  service: Relation<Service>;
 
   @Column()
   quantity: number;
 
-  @Column()
+  @Column("decimal", {
+    precision: 7,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
+  })
   price: number;
 
-  @Column()
+  @Column("decimal", {
+    precision: 7,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
+  })
   tax: number;
 }

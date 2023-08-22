@@ -18,10 +18,10 @@ export class CartItem {
   user: Relation<User>;
 
   @ManyToOne(() => Product, (product) => product.cartItems)
-  product: Product;
+  product: Relation<Product>;
 
   @ManyToOne(() => Service, (service) => service.cartItems)
-  service: Service;
+  service: Relation<Service>;
 
   @Column()
   quantity: number;
