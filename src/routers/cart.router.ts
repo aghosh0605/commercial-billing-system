@@ -23,4 +23,12 @@ router.post(
   cartController.addCart
 );
 
+/* DELETE Delete items from the cart */
+router.delete(
+  "/delete/all",
+  yupValidator("headers", yupJwtHeader),
+  validateJWT,
+  cartController.deleteCartItems
+);
+
 export { router as default };
