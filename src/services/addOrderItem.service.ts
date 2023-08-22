@@ -32,10 +32,10 @@ const addOrderItems = async (
     try {
       const service = new OrderItem();
       service.order = newOrder;
-      service.product = item.product;
+      service.service = item.service;
       service.quantity = item.quantity;
       service.tax = item.tax;
-      service.price = item.product.price;
+      service.price = item.service.price;
       await orderItemsRepository.save(service);
     } catch (err: any) {
       logger.error(err.message);

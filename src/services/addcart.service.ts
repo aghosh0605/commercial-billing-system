@@ -20,6 +20,18 @@ const addCart = async (
       },
     };
   }
+
+  if (data.product_id && data.service_id) {
+    return {
+      statusCode: 400,
+      body: {
+        success: false,
+        message:
+          "🔗 Please provide only one item. Either product or service ID",
+      },
+    };
+  }
+
   let item;
   if (data.product_id) {
     item = await AppDataSource.getRepository(Product).findOneBy({
@@ -54,7 +66,7 @@ const addCart = async (
       message: "🛍️ Added the product successfully",
       data: {
         id: addedItem.id,
-        item: addedItem.product,
+        item: data.product_id ? cartItem.product : cartItem.service,
         type: data.product_id ? "product" : "service",
       },
     },

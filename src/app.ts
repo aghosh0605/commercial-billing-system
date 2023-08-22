@@ -11,6 +11,7 @@ import productRouter from "./routers/product.router";
 import authRouter from "./routers/auth.router";
 import cartRouter from "./routers/cart.router";
 import orderRouter from "./routers/order.router";
+import serviceRouter from "./routers/service.router";
 
 const app: Express = express();
 
@@ -36,6 +37,7 @@ app.use("/api/v1/product", productRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/order", orderRouter);
+app.use("/api/v1/service", serviceRouter);
 
 // Error hanlding middleware
 

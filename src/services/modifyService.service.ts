@@ -1,9 +1,9 @@
 import { ServiceAPIResponse } from "../../types/service-response";
 import { AppDataSource } from "../data-source";
-import { Product } from "../entity/Product";
+import { Service } from "../entity/Service";
 import { ModifyProductSchema } from "../validators/product.validator";
 
-const modifyProduct = async (
+const modifyService = async (
   id: number,
   data: ModifyProductSchema
 ): Promise<ServiceAPIResponse<undefined>> => {
@@ -17,24 +17,24 @@ const modifyProduct = async (
       },
     };
   }
-  const productRepository = await AppDataSource.getRepository(Product);
-  const product = await productRepository.findBy({
+  const serviceRepository = await AppDataSource.getRepository(Service);
+  const service = await serviceRepository.findBy({
     id: id,
   });
-  if (product.length === 0) {
+  if (service.length === 0) {
     return {
       statusCode: 404,
       body: {
         success: false,
-        message: "🛒 No product found with the ID",
+        message: "👨‍🔧 No service found with the ID",
       },
     };
   }
-  await productRepository.update({ id: id }, data);
+  await serviceRepository.update({ id: id }, data);
   return {
     statusCode: 200,
-    body: { success: true, message: "🛒 Modified the product successfully" },
+    body: { success: true, message: "👨‍🔧 Modified the service successfully" },
   };
 };
 
-export { modifyProduct };
+export { modifyService };
