@@ -5,7 +5,7 @@ import { AddProductSchema } from "../validators/product.validator";
 
 const addProduct = async (
   data: AddProductSchema
-): Promise<ServiceAPIResponse<undefined>> => {
+): Promise<ServiceAPIResponse<Product>> => {
   /* Create new product here */
   const productsRepository = await AppDataSource.getRepository(Product);
   const product = await productsRepository.findOneBy({ name: data.name });
@@ -18,10 +18,14 @@ const addProduct = async (
       },
     };
   }
-  await productsRepository.save(data);
+  const savedProduct = await productsRepository.save(data);
   return {
     statusCode: 200,
-    body: { success: true, message: "🛒 Added the product successfully" },
+    body: {
+      success: true,
+      message: "🛒 Added the product successfully",
+      data: savedProduct,
+    },
   };
 };
 

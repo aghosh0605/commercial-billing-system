@@ -40,4 +40,20 @@ const deleteCartItems = async (req: Request, res: Response) => {
   }
 };
 
-export { addCart, getCartItems, deleteCartItems };
+const deleteSpecificCartItems = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const data = await deleteCartService.deleteSpecificCartItems(
+      res.locals.user,
+      +id
+    );
+
+    res.status(data.statusCode).send(data.body);
+  } catch (e: any) {
+    logger.error(e.message);
+
+    res.status(500).send(e.message);
+  }
+};
+
+export { addCart, getCartItems, deleteCartItems, deleteSpecificCartItems };

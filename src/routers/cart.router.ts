@@ -3,6 +3,7 @@ import { validateJWT, yupValidator } from "../middleware";
 import * as cartController from "../controllers/cart.controller";
 import { yupAddCart } from "../validators/cart.validator";
 import { yupJwtHeader } from "../validators/jwt.validator";
+import { yupGetProduct } from "../validators/product.validator";
 
 const router = express.Router();
 
@@ -29,6 +30,15 @@ router.delete(
   yupValidator("headers", yupJwtHeader),
   validateJWT,
   cartController.deleteCartItems
+);
+
+/* DELETE Delete specific item from the cart */
+router.delete(
+  "/delete/specific/:id",
+  yupValidator("headers", yupJwtHeader),
+  validateJWT,
+  yupValidator("params", yupGetProduct),
+  cartController.deleteSpecificCartItems
 );
 
 export { router as default };

@@ -9,7 +9,7 @@ import { AddCartSchema } from "../validators/cart.validator";
 const addCart = async (
   data: AddCartSchema,
   userModel: User
-): Promise<ServiceAPIResponse<undefined>> => {
+): Promise<ServiceAPIResponse<Object>> => {
   /* Add item to your cart here */
   if (!data.product_id && !data.service_id) {
     return {
@@ -46,10 +46,18 @@ const addCart = async (
   data.product_id ? (cartItem.product = item) : (cartItem.service = item);
 
   const cartRepository = await AppDataSource.getRepository(CartItem);
-  await cartRepository.save(cartItem);
+  const addedItem = await cartRepository.save(cartItem);
   return {
     statusCode: 200,
-    body: { success: true, message: "🛍️ Added the product successfully" },
+    body: {
+      success: true,
+      message: "🛍️ Added the product successfully",
+      data: {
+        id: addedItem.id,
+        item: addedItem.product,
+        type: data.product_id ? "product" : "service",
+      },
+    },
   };
 };
 

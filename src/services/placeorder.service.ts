@@ -8,9 +8,7 @@ import { addOrderItems } from "./addOrderItem.service";
 import { deleteCartItems } from "./deletecart.service";
 import { itemTaxCalculator } from "./tax.service";
 
-const placeOrder = async (
-  user: User
-): Promise<ServiceAPIResponse<undefined>> => {
+const placeOrder = async (user: User): Promise<ServiceAPIResponse<Object>> => {
   /* Place order with cart items */
   const orderRepository = await AppDataSource.getRepository(Order);
   const items = await AppDataSource.getRepository(CartItem).find({
@@ -37,7 +35,7 @@ const placeOrder = async (
   const newOrder = new Order();
   newOrder.user = user;
   newOrder.totalAmount = result.cartTotal;
-  await orderRepository.save(newOrder);
+  const orderDetails = await orderRepository.save(newOrder);
 
   await addOrderItems(result, newOrder);
 
@@ -48,6 +46,7 @@ const placeOrder = async (
     body: {
       success: true,
       message: "🚚 Order placed successfully",
+      data: { id: orderDetails.id, totalAmount: orderDetails.totalAmount },
     },
   };
 };
