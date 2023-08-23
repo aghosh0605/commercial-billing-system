@@ -6,8 +6,8 @@ An online billing system is essential for businesses to manage their invoicing, 
 
 ## Prerequisite
 
-- Node 16
-- Yarn
+- [Node 16](https://nodejs.org/en)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable)
 
 ## Nice to have
 
@@ -19,20 +19,20 @@ An online billing system is essential for businesses to manage their invoicing, 
 
 - Clone the repository
 
-```
+```bash
 git clone https://github.com/aghosh0605/plotline-billing-system.git
 ```
 
 - Install dependencies
 
-```
+```bash
 cd plotline-billing-system
 yarn
 ```
 
 - Run local development server
 
-```
+```bash
 yarn run dev
 ```
 
@@ -41,18 +41,18 @@ yarn run dev
 ```
 GET /api/v1
 GET /api/v1/health
-GET /api/v1/health/debug
+GET /api/v1/health/debug #Need to be logged in to check
 ```
 
 - To use ESLint and to fix lint errors
 
-```
+```bash
 yarn run lint
 ```
 
 - To build and run tests
 
-```
+```bash
 yarn test
 ```
 
@@ -69,6 +69,42 @@ This project uses [Winston](https://github.com/winstonjs/winston) and [Morgan](h
 Morgan is used as an http logger middleware for Express and the logs are routed through Winston, so everything is nicely bundled in one log stream.
 
 All of these logs are written to console during development. Feel free to add production-specific loggers as and when needed.
+
+# Important Instructions for Docker
+
+1. Build an image of the NodeJS App with the help of the [Dockerfile](./Dockerfile)
+
+```bash
+docker build . -t aghosh0605/plotline-billing-system
+```
+
+2. Start the Docker image with the following command to start the App within a Docker container
+
+```bash
+docker run -p 8080:8080 -d --name plotline-billing-system aghosh0605/plotline-billing-system
+```
+
+3. Stop the Docker container with the following command to stop the App
+
+```bash
+docker ps #Note down the CONTAINER ID
+docker kill <CONTAINER ID> #To kill the container
+docker start plotline-billing-system #To start the container again
+```
+
+4. Remove the docker container from the system with the following command
+
+```bash
+docker ps -a  #Keep note of container ID
+docker rm <CONTAINER ID> #Remove the docker container
+docker rm -f plotline-billing-system #To stop and remove container in a single command
+```
+
+5. At last now to delete the docker image from the system follow the command
+
+```bash
+docker image remove aghosh0605/plotline-billing-system
+```
 
 ## Project structure
 

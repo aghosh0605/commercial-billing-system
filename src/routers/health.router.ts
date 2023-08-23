@@ -1,6 +1,7 @@
 import express from "express";
 
 import * as healthController from "../controllers/health.controller";
+import { validateJWT } from "../middleware";
 
 const router = express.Router();
 
@@ -8,6 +9,6 @@ const router = express.Router();
 router.get("/", healthController.getSimple);
 
 /* GET detailed healthcheck */
-router.get("/debug", healthController.getDetailed);
+router.get("/debug", validateJWT, healthController.getDetailed);
 
 export { router as default };
