@@ -4,6 +4,8 @@
 
 An online billing system is essential for businesses to manage their invoicing, payments, and financial transactions efficiently. A Node.js server for a billing system that provides seamless functionality and a user-friendly experience.
 
+Check the problem statement [here](./Problem_Statement.pdf)
+
 ## Prerequisite
 
 - [Node 16](https://nodejs.org/en)
